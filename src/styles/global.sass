@@ -10,11 +10,14 @@
     .input
         @apply block px-3 py-2 rounded border border-neutral-800 hover:border-neutral-500 focus:border-white bg-transparent outline-none w-full font-mono
 
+        &.input-danger
+            @apply border-red-500 hover:border-red-400 focus:border-white
+
     .label
         @apply block font-bold text-neutral-400
 
     .button
-        @apply block px-3 py-2 text-center rounded border disabled:border-transparent disabled:bg-neutral-950 enabled:border-neutral-800 enabled:hover:border-neutral-500 disabled:text-neutral-500 bg-transparent
+        @apply block px-3 py-2 text-center rounded border disabled:border-transparent disabled:bg-neutral-900 enabled:border-neutral-800 enabled:hover:border-neutral-500 disabled:text-neutral-500 bg-transparent
 
         &.button-discord
             @apply bg-[#5865F2] border-[#5865F2] hover:opacity-90

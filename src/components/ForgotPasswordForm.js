@@ -25,9 +25,11 @@ export default function ForgotPasswordForm({ className }) {
         <form className={className} onSubmit={form.handleSubmit}>
             <div className="flex flex-col gap-3">
                 <div>
-                    <label className="label" htmlFor="email">Email</label>
-                    <input type="email" className="input mt-1" id="email" placeholder="me@mycompany.com" onChange={form.handleChange} onBlur={form.handleBlur} />
-                    {form.errors.email ? <p className="text-sm mt-1 text-red-400">{form.errors.email}</p> : null}
+                    <div className="flex items-center justify-between">
+                        <label className="label" htmlFor="email">Email</label>
+                        {form.errors.email ? <p className="text-sm mt-1 text-red-400">{form.errors.email}</p> : null}
+                    </div>
+                    <input type="email" className={`input ${form.errors.email ? 'input-danger' : ''} mt-1`} id="email" placeholder="me@mycompany.com" onChange={form.handleChange} onBlur={form.handleBlur} />
                 </div>
                 <button type="submit" className="button flex items-center justify-center gap-2" disabled={!form.isValid || form.isSubmitting}>
                     {
