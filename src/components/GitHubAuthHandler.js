@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { createContext, useEffect, useState } from 'react';
 import LoadingIcon from '@/assets/icons/loading.svg';
 
@@ -10,7 +10,6 @@ export const UserProvider = createContext(undefined);
 export default function GitHubAuthHandler() {
     const searchParams = useSearchParams();
     const [error, setError] = useState(null);
-    const { push } = useRouter();
 
     useEffect(() => {
         if (searchParams.has('code')) {

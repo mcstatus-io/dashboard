@@ -4,8 +4,6 @@ import { useFormik } from 'formik';
 import Link from 'next/link';
 import * as Yup from 'yup';
 import ArrowRightIcon from '@/assets/icons/arrow-right.svg';
-import DiscordIcon from '@/assets/icons/discord.svg';
-import GitHubIcon from '@/assets/icons/github.svg';
 import LoadingIcon from '@/assets/icons/loading.svg';
 
 export default function ForgotPasswordForm({ className }) {
@@ -16,7 +14,7 @@ export default function ForgotPasswordForm({ className }) {
         validationSchema: Yup.object().shape({
             email: Yup.string().email('Must be a valid email address').required('Required')
         }),
-        onSubmit: async (values, { setSubmitting }) => {
+        onSubmit: () => {
             // TODO
         }
     });
