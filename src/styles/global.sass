@@ -1,0 +1,23 @@
+@tailwind base
+@tailwind components
+@tailwind utilities
+
+@layer utilities
+    .link
+        @apply text-blue-400 hover:text-blue-500
+
+@layer components
+    .input
+        @apply block px-3 py-2 rounded border border-neutral-800 hover:border-neutral-500 focus:border-white bg-transparent outline-none w-full font-mono
+
+    .label
+        @apply block font-bold text-neutral-400
+
+    .button
+        @apply block px-3 py-2 text-center rounded border disabled:border-transparent disabled:bg-neutral-950 enabled:border-neutral-800 enabled:hover:border-neutral-500 disabled:text-neutral-500 bg-transparent
+
+        &.button-discord
+            @apply bg-[#5865F2] border-[#5865F2] hover:opacity-90
+
+        &.button-github
+            @apply bg-neutral-900 border-neutral-900 hover:opacity-90
