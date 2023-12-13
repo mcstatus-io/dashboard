@@ -2,12 +2,16 @@
 
 import { useFormik } from 'formik';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import * as Yup from 'yup';
+import postLogin from '@/actions/postLogin';
 import ArrowRightIcon from '@/assets/icons/arrow-right.svg';
 import LoadingIcon from '@/assets/icons/loading.svg';
 import LoginWithButtons from '@/components/LoginWithButtons';
 
 export default function LoginForm({ className }) {
+    const { push } = useRouter();
+
     const form = useFormik({
         initialValues: {
             email: '',
@@ -17,8 +21,19 @@ export default function LoginForm({ className }) {
             email: Yup.string().email('Must be a valid email address').required('Required'),
             password: Yup.string().min(6, 'Must be at least 6 characters').required('Required')
         }),
-        onSubmit: async (values, { setSubmitting }) => {
-            // TODO
+        onSubmit: async (values, { setSubmitting, setStatus }) => {
+            setSubmitting(true);
+
+            try {
+                const result = await postLogin(values);
+
+                window.localStorage.setItem('session', result.id);
+
+                push('/dashboard');
+            } catch (e) {
+                setStatus({ error: e.message });
+                setSubmitting(false);
+            }
         }
     });
 

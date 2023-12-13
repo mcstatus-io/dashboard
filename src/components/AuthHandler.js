@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation';
 import { createContext, useEffect, useState } from 'react';
-import { useCookies } from 'react-cookie';
 import getUser from '@/actions/getUser';
 import LoadingIcon from '@/assets/icons/loading.svg';
 
@@ -10,24 +9,29 @@ export const UserProvider = createContext(undefined);
 
 export default function AuthHandler({ children }) {
     const [user, setUser] = useState(null);
-    const [cookies] = useCookies();
     const { push } = useRouter();
 
     useEffect(() => {
-        if (Object.hasOwn(cookies, 'session')) {
+        const sessionToken = window.localStorage.getItem('session');
+
+        if (sessionToken && sessionToken.length > 0) {
             (async () => {
                 try {
-                    const result = await getUser('@me', cookies.session);
+                    const result = await getUser('@me', sessionToken);
 
                     setUser(result);
+
+                    push('/dashboard');
                 } catch {
                     setUser(null);
+
+                    push('/auth/login');
                 }
             })();
         } else {
             push('/auth/login');
         }
-    }, [cookies]);
+    }, []);
 
     return (
         children && user

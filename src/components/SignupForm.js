@@ -2,16 +2,22 @@
 
 import { useFormik } from 'formik';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import * as Yup from 'yup';
+import postSignup from '@/actions/postSignup';
 import ArrowRightIcon from '@/assets/icons/arrow-right.svg';
 import LoadingIcon from '@/assets/icons/loading.svg';
 import LoginWithButtons from '@/components/LoginWithButtons';
 
 export default function SignupForm({ className }) {
+    const { push } = useRouter();
+
     const form = useFormik({
         initialValues: {
+            firstName: '',
             email: '',
-            password: ''
+            password: '',
+            confirmPassword: ''
         },
         validationSchema: Yup.object().shape({
             firstName: Yup.string().min(1, 'Must be at least 1 character').max(36, 'Must be at most 36 characters').required('Required'),
@@ -19,8 +25,19 @@ export default function SignupForm({ className }) {
             password: Yup.string().min(6, 'Must be at least 6 characters').required('Required'),
             confirmPassword: Yup.string().oneOf([Yup.ref('password')], 'Confirm password must match password').required('Required')
         }),
-        onSubmit: async (values, { setSubmitting }) => {
-            // TODO
+        onSubmit: async (values, { setSubmitting, setStatus }) => {
+            setSubmitting(true);
+
+            try {
+                const result = await postSignup(values);
+
+                window.localStorage.setItem('session', result.id);
+
+                push('/dashboard');
+            } catch (e) {
+                setStatus({ error: e.message });
+                setSubmitting(false);
+            }
         }
     });
 
