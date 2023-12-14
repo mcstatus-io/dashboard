@@ -39,6 +39,11 @@ export default function ForgotPasswordForm({ className }) {
                             </>
                     }
                 </button>
+                {
+                    form.status?.error
+                        ? <p className="text-red-400 text-sm">{form.status.error}</p>
+                        : null
+                }
                 <div className="flex items-center justify-between">
                     <Link href="/auth/login">
                         <span className="link">Back to login page</span>

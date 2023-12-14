@@ -1,5 +1,9 @@
 import LoginForm from '@/components/LoginForm';
 
+export const metadata = {
+    title: 'Login'
+};
+
 export default function Page() {
     return (
         <div className="absolute container mx-auto w-[640px] max-w-[90vw] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">

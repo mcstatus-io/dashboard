@@ -22,6 +22,7 @@ export default function LoginForm({ className }) {
             password: Yup.string().min(6, 'Must be at least 6 characters').required('Required')
         }),
         onSubmit: async (values, { setSubmitting, setStatus }) => {
+            setStatus(null);
             setSubmitting(true);
 
             try {
@@ -64,6 +65,11 @@ export default function LoginForm({ className }) {
                             </>
                     }
                 </button>
+                {
+                    form.status?.error
+                        ? <p className="text-red-400 text-sm">{form.status.error}</p>
+                        : null
+                }
                 <div className="flex items-center justify-between">
                     <Link href="/auth/signup">
                         <span className="link">Create account</span>

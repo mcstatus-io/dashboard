@@ -21,7 +21,11 @@ export default function AuthHandler({ children }) {
 
                     setUser(result);
 
-                    push('/dashboard');
+                    if (result === null) {
+                        push('/auth/login');
+                    } else {
+                        push('/dashboard');
+                    }
                 } catch {
                     setUser(null);
 

@@ -19,7 +19,7 @@ const firaMonoFont = Fira_Mono({
 
 export const metadata = {
     title: {
-        default: 'Minecraft Server Status - Get the status of any Minecraft server',
+        default: 'Minecraft Server Status',
         template: '%s - Minecraft Server Status'
     },
     description: 'Easily and quickly retrieve the status of any Java or Bedrock Edition Minecraft server by using our tool.',
@@ -40,8 +40,8 @@ export const metadata = {
         type: 'website'
     },
     robots: {
-        index: true,
-        follow: true
+        index: false,
+        follow: false
     },
     icons: {
         icon: [
@@ -55,7 +55,7 @@ export const metadata = {
             { url: '/img/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
             { url: '/img/android-chrome-256x256.png', sizes: '256x256', type: 'image/png' },
             { url: '/img/android-chrome-384x384.png', sizes: '384x384', type: 'image/png' },
-            { url: '/img/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+            { url: '/img/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' }
         ],
         apple: [
             { url: '/img/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
@@ -67,7 +67,7 @@ export const metadata = {
             { url: '/img/apple-touch-icon-120x120.png', sizes: '120x120', type: 'image/png' },
             { url: '/img/apple-touch-icon-144x144.png', sizes: '144x144', type: 'image/png' },
             { url: '/img/apple-touch-icon-152x152.png', sizes: '152x152', type: 'image/png' },
-            { url: '/img/apple-touch-icon-180x180.png', sizes: '180x180', type: 'image/png' },
+            { url: '/img/apple-touch-icon-180x180.png', sizes: '180x180', type: 'image/png' }
         ],
         other: [
             { rel: 'apple-touch-icon-precomposed', url: '/img/apple-touch-icon-57x57-precomposed.png', sizes: '57x57' },
@@ -89,7 +89,7 @@ export const metadata = {
 };
 
 export const viewport = {
-    themeColor: '#303030'
+    themeColor: '#000000'
 };
 
 export default function RootLayout({ children }) {

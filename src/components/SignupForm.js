@@ -26,6 +26,7 @@ export default function SignupForm({ className }) {
             confirmPassword: Yup.string().oneOf([Yup.ref('password')], 'Confirm password must match password').required('Required')
         }),
         onSubmit: async (values, { setSubmitting, setStatus }) => {
+            setStatus(null);
             setSubmitting(true);
 
             try {
@@ -82,6 +83,11 @@ export default function SignupForm({ className }) {
                             </>
                     }
                 </button>
+                {
+                    form.status?.error
+                        ? <p className="text-red-400 text-sm">{form.status.error}</p>
+                        : null
+                }
                 <Link href="/auth/login">
                     <span className="link">Login to existing account</span>
                 </Link>
