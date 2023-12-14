@@ -14,8 +14,5 @@ module.exports = {
         });
 
         return config;
-    },
-    experimental: {
-        webpackBuildWorker: true
     }
 };
