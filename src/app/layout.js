@@ -1,6 +1,8 @@
 import '@/styles/global.sass';
 
 import { Fira_Mono, Inter } from 'next/font/google';
+import { Suspense } from 'react';
+import LoadingScreen from '@/components/LoadingScreen';
 
 const interFont = Inter({
     variable: '--font-inter',
@@ -96,7 +98,9 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en" className={`dark ${interFont.variable} ${firaMonoFont.variable}`}>
             <body className="bg-black text-white font-sans overflow-x-hidden w-[100vw] scroll-smooth">
-                {children}
+                <Suspense fallback={<LoadingScreen />}>
+                    {children}
+                </Suspense>
             </body>
         </html>
     );

@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { createContext, useEffect, useState } from 'react';
 import getUser from '@/actions/getUser';
-import LoadingIcon from '@/assets/icons/loading.svg';
+import LoadingScreen from '@/components/LoadingScreen';
 
 export const UserProvider = createContext(undefined);
 
@@ -42,8 +42,6 @@ export default function AuthHandler({ children }) {
             ? <UserProvider.Provider value={user}>
                 {children}
             </UserProvider.Provider>
-            : <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <LoadingIcon width="64" height="64" />
-            </div>
+            : <LoadingScreen />
     );
 }
