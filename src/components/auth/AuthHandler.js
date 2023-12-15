@@ -23,7 +23,7 @@ export default function AuthHandler({ children }) {
 
                     if (result === null) {
                         push('/auth/login');
-                    } else {
+                    } else if (!children) {
                         push('/dashboard');
                     }
                 } catch {

@@ -9,17 +9,19 @@ import CrosshairIcon from '@/assets/icons/crosshair.svg';
 import GitPullRequestIcon from '@/assets/icons/git-pull-request.svg';
 import GridIcon from '@/assets/icons/grid.svg';
 import KeyIcon from '@/assets/icons/key.svg';
+import LogOutIcon from '@/assets/icons/log-out.svg';
 import MonitorIcon from '@/assets/icons/monitor.svg';
 import ServerIcon from '@/assets/icons/server.svg';
+import SettingsIcon from '@/assets/icons/settings.svg';
 import icon from '@/assets/img/icon.png';
-import { UserProvider } from '@/components/AuthHandler';
+import { UserProvider } from '@/components/auth/AuthHandler';
 
 export default function Sidebar() {
     const path = usePathname();
     const user = useContext(UserProvider);
 
     return (
-        <nav className="flex flex-col gap-5 min-w-[300px] h-full px-5 pb-5 pt-10 border-r border-r-neutral-800">
+        <nav className="flex flex-col gap-5 w-[300px] h-full px-5 pb-5 pt-10 border-r border-r-neutral-800">
             <a href="https://mcstatus.io" className="flex items-center justify-center gap-3 text-2xl font-black hover:bg-neutral-800 rounded px-5 py-3 transition-colors">
                 <Image src={icon} width="48" height="48" alt="Minecraft Server Status" priority />
                 <span>MCS</span>
@@ -88,14 +90,16 @@ export default function Sidebar() {
                     </Link>
                 </li>
                 <li className="mt-auto">
-                    <div className="flex flex-col gap-3">
-                        <p className="text-sm text-neutral-300">Logged in as...</p>
-                        <p className="max-w-full">{user.email}</p>
-                        <div className="flex items-center gap-3">
-                            <Link href="/account" className="button grow">
+                    <div className="flex flex-col gap-1">
+                        <p className="text-sm text-neutral-400">Logged in as...</p>
+                        <p className="overflow-ellipsis overflow-hidden">{user.email}</p>
+                        <div className="flex items-center gap-3 mt-3">
+                            <Link href="/account" className="button button-invisible text-neutral-300 hover:text-white flex items-center gap-2 grow">
+                                <SettingsIcon width="16" height="16" />
                                 <span>Settings</span>
                             </Link>
-                            <Link href="/auth/logout" className="button grow">
+                            <Link href="/auth/logout" className="button button-invisible text-red-500 hover:text-red-400 flex items-center gap-2 grow">
+                                <LogOutIcon width="16" height="16" />
                                 <span>Log out</span>
                             </Link>
                         </div>

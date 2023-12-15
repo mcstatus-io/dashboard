@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import postSignup from '@/actions/postSignup';
 import ArrowRightIcon from '@/assets/icons/arrow-right.svg';
 import LoadingIcon from '@/assets/icons/loading.svg';
-import LoginWithButtons from '@/components/LoginWithButtons';
+import LoginWithButtons from '@/components/login/LoginWithButtons';
 
 export default function SignupForm({ className }) {
     const { push } = useRouter();

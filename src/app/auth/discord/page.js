@@ -1,4 +1,4 @@
-import DiscordAuthHandler from '@/components/DiscordAuthHandler';
+import DiscordAuthHandler from '@/components/auth/DiscordAuthHandler';
 
 export const metadata = {
     title: 'Discord Login'

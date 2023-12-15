@@ -4,8 +4,10 @@ export const metadata = {
 
 export default function Page() {
     return (
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <p className="text-6xl font-light">Dashboard</p>
+        <div>
+            <h1 className="font-bold text-5xl">Dashboard</h1>
+            <p className="text-xl text-neutral-400 mt-1">Everything you need to see, all in one place.</p>
+            <hr className="mt-5 mb-10 border-neutral-800" />
         </div>
     );
 }

@@ -1,4 +1,4 @@
-import GitHubAuthHandler from '@/components/GitHubAuthHandler';
+import GitHubAuthHandler from '@/components/auth/GitHubAuthHandler';
 
 export const metadata = {
     title: 'GitHub Login'

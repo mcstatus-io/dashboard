@@ -1,4 +1,4 @@
-import AuthHandler from '@/components/AuthHandler';
+import AuthHandler from '@/components/auth/AuthHandler';
 
 export const metadata = {
     title: 'Loading'
