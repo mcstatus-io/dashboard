@@ -1,3 +1,9 @@
+@mixin box
+    @apply rounded bg-neutral-950 border border-neutral-800
+    
+@mixin interactive
+    @apply rounded text-neutral-300 disabled:text-neutral-500 [&:not(:disabled)]:hover:text-white [&:not(:disabled)]:focus:text-white disabled:border-transparent [&:not(:disabled)]:hover:border-neutral-500 [&:not(:disabled)]:focus:border-neutral-500 hover:bg-neutral-900 focus:bg-neutral-900 disabled:bg-neutral-900
+    
 @tailwind base
 @tailwind components
 @tailwind utilities
@@ -8,22 +14,33 @@
 
 @layer components
     .input
-        @apply block px-3 py-2 rounded border border-neutral-800 hover:border-neutral-500 focus:border-white bg-transparent outline-none w-full font-mono
+        @apply block px-3 py-2 outline-none font-mono w-full
+        @include box
+        @include interactive
 
         &.input-danger
-            @apply border-red-500 hover:border-red-400 focus:border-white
+            @apply border-red-500 hover:border-red-400 focus:border-red-400
 
     .label
         @apply block font-bold text-neutral-400
 
     .button
-        @apply block px-3 py-2 text-center rounded border disabled:border-transparent disabled:bg-neutral-900 [&:not(:disabled)]:border-neutral-800 [&:not(:disabled)]:hover:border-neutral-500 disabled:text-neutral-500 bg-transparent
+        @apply block px-3 py-2 text-center
+        @include box
+        @include interactive
+
+        &.button-danger
+            @apply text-red-500 [&:not(:disabled)]:hover:text-red-400 border-red-500/50 [&:not(:disabled)]:hover:border-red-400/50
 
         &.button-discord
-            @apply bg-[#5865F2] border-[#5865F2] hover:opacity-90
+            @apply bg-[#5865F2] border-[#5865F2] hover:border-[#5865F2] hover:opacity-90
 
         &.button-github
-            @apply bg-neutral-900 border-neutral-900 hover:opacity-90
+            @apply bg-neutral-900 border-neutral-900 hover:border-neutral-900 hover:opacity-90
+    
+    .box
+        @apply p-5
+        @include box
 
-        &.button-invisible
-            @apply border-transparent hover:bg-neutral-800
+        &.box-interactive
+            @include interactive

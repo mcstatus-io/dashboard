@@ -21,7 +21,7 @@ export default function Sidebar() {
     const user = useContext(UserProvider);
 
     return (
-        <nav className="flex flex-col gap-5 w-[300px] h-full px-5 pb-5 pt-10 border-r border-r-neutral-800">
+        <nav className="flex flex-col gap-5 min-w-[300px] w-[300px] max-w-[300px] h-full px-5 pb-5 pt-10 border-r border-r-neutral-800 bg-neutral-950">
             <a href="https://mcstatus.io" className="flex items-center justify-center gap-3 text-2xl font-black hover:bg-neutral-800 rounded px-5 py-3 transition-colors">
                 <Image src={icon} width="48" height="48" alt="Minecraft Server Status" priority />
                 <span>MCS</span>
@@ -94,11 +94,11 @@ export default function Sidebar() {
                         <p className="text-sm text-neutral-400">Logged in as...</p>
                         <p className="overflow-ellipsis overflow-hidden">{user.email}</p>
                         <div className="flex items-center gap-3 mt-3">
-                            <Link href="/account" className="button button-invisible text-neutral-300 hover:text-white flex items-center gap-2 grow">
+                            <Link href="/account" className="button flex items-center justify-center gap-2 grow">
                                 <SettingsIcon width="16" height="16" />
                                 <span>Settings</span>
                             </Link>
-                            <Link href="/auth/logout" className="button button-invisible text-red-500 hover:text-red-400 flex items-center gap-2 grow">
+                            <Link href="/auth/logout" className="button button-danger flex items-center justify-center gap-2 grow">
                                 <LogOutIcon width="16" height="16" />
                                 <span>Log out</span>
                             </Link>

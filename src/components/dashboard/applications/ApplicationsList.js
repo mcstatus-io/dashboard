@@ -32,7 +32,7 @@ export default function ApplicationsList({ className = '' }) {
             {
                 data.isLoaded
                     ? data.error
-                        ? <div className="border border-neutral-800 rounded p-5 text-red-400">{data.error}</div>
+                        ? <div className="box text-red-400">{data.error}</div>
                         : <div className="flex flex-col gap-3">
                             <div className="flex items-center gap-3">
                                 <Link href="/applications/new" className="button flex items-center gap-2">
@@ -51,7 +51,7 @@ export default function ApplicationsList({ className = '' }) {
                                             data.data.map((application, index) => (
                                                 <li key={index}>
                                                     <Link href={`/applications/${application.id}`}>
-                                                        <div className="border border-neutral-800 hover:border-white p-5 rounded cursor-pointer">
+                                                        <div className="box box-interactive">
                                                             <p className="text-2xl font-bold">{application.name}</p>
                                                             <p className="text-neutral-300 mt-1">{application.shortDescription}</p>
                                                             <p className="text-neutral-500 mt-2 text-sm">Created {humanizeDuration(Date.now() - new Date(application.createdAt).getTime(), { largest: 1, round: true })} ago</p>
@@ -64,7 +64,7 @@ export default function ApplicationsList({ className = '' }) {
                                     : <p className="text-neutral-400 mt-5">There does not seem to be any applications here. Why not create one?</p>
                             }
                         </div>
-                    : <div className="flex items-center justify-center border border-neutral-800 rounded py-24">
+                    : <div className="box flex items-center justify-center py-24">
                         <LoadingIcon width="48" height="48" />
                     </div>
             }
