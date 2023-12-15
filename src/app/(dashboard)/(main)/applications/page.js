@@ -1,4 +1,4 @@
-import ApplicationsList from '@/components/dashboard/ApplicationsList';
+import ApplicationsList from '@/components/dashboard/applications/ApplicationsList';
 
 export const metadata = {
     title: 'Applications'

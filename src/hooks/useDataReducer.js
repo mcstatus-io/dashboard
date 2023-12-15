@@ -2,6 +2,8 @@ import { useReducer } from 'react';
 
 const reducerFunc = (state, action) => {
     switch (action.type) {
+        case 'RESET':
+            return { isLoaded: false, error: null, data: null };
         case 'SET_DATA':
             return { isLoaded: true, error: null, data: action.data };
         case 'SET_ERROR':

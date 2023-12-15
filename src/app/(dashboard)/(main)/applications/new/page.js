@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import ArrowLeftIcon from '@/assets/icons/arrow-left.svg';
-import NewApplicationForm from '@/components/dashboard/NewApplicationForm';
+import NewApplicationForm from '@/components/dashboard/applications/NewApplicationForm';
 
 export const metadata = {
     title: 'New Application'
