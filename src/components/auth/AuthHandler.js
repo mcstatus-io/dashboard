@@ -24,7 +24,7 @@ export default function AuthHandler({ children }) {
                     if (result === null) {
                         push('/auth/login');
                     } else if (!children) {
-                        push('/dashboard');
+                        push('/');
                     }
                 } catch {
                     setUser(null);

@@ -22,7 +22,7 @@ export default function Sidebar() {
 
     return (
         <nav className="flex flex-col gap-5 min-w-[300px] w-[300px] max-w-[300px] h-full px-5 pb-5 pt-10 border-r border-r-neutral-800 bg-neutral-950">
-            <a href="https://mcstatus.io" className="flex items-center justify-center gap-3 text-2xl font-black hover:bg-neutral-800 rounded px-5 py-3 transition-colors">
+            <a href="https://mcstatus.io" className="flex items-center justify-center gap-3 px-5 py-3 text-2xl font-black transition-colors rounded hover:bg-neutral-800">
                 <Image src={icon} width="48" height="48" alt="Minecraft Server Status" priority />
                 <span>MCS</span>
             </a>
@@ -31,8 +31,8 @@ export default function Sidebar() {
                     <span className="text-sm text-neutral-300">General</span>
                 </li>
                 <li className="mt-3">
-                    <Link href="/dashboard">
-                        <div className={`flex items-center gap-3 px-3 py-2 rounded ${path === '/dashboard' ? 'text-white bg-neutral-800' : 'text-neutral-400 hover:bg-neutral-800 hover:text-white'}`}>
+                    <Link href="/">
+                        <div className={`flex items-center gap-3 px-3 py-2 rounded ${path === '/' ? 'text-white bg-neutral-800' : 'text-neutral-400 hover:bg-neutral-800 hover:text-white'}`}>
                             <MonitorIcon width="16" height="16" />
                             <span>Dashboard</span>
                         </div>
@@ -92,13 +92,13 @@ export default function Sidebar() {
                 <li className="mt-auto">
                     <div className="flex flex-col gap-1">
                         <p className="text-sm text-neutral-400">Logged in as...</p>
-                        <p className="overflow-ellipsis overflow-hidden">{user.email}</p>
+                        <p className="overflow-hidden overflow-ellipsis">{user.email}</p>
                         <div className="flex items-center gap-3 mt-3">
-                            <Link href="/account" className="button flex items-center justify-center gap-2 grow">
+                            <Link href="/account" className="flex items-center justify-center gap-2 button grow">
                                 <SettingsIcon width="16" height="16" />
                                 <span>Settings</span>
                             </Link>
-                            <Link href="/auth/logout" className="button button-danger flex items-center justify-center gap-2 grow">
+                            <Link href="/auth/logout" className="flex items-center justify-center gap-2 button button-danger grow">
                                 <LogOutIcon width="16" height="16" />
                                 <span>Log out</span>
                             </Link>

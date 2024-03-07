@@ -21,7 +21,7 @@ export default function DiscordAuthHandler() {
 
                     window.localStorage.setItem('session', result.id);
 
-                    push('/dashboard');
+                    push('/');
                 } catch (e) {
                     setError(e.message);
                 }
@@ -33,10 +33,10 @@ export default function DiscordAuthHandler() {
 
     return (
         error
-            ? <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-neutral-800 p-5 rounded w-screen max-w-screen-sm">
+            ? <div className="absolute w-screen max-w-screen-sm p-5 -translate-x-1/2 -translate-y-1/2 border rounded top-1/2 left-1/2 border-neutral-800">
                 <p className="leading-7">There was an error while attempting to authenticate with Discord, and the following error was provided for your convenience.</p>
                 <hr className="my-5 border-neutral-800" />
-                <pre className="leading-7 mt-3 text-red-400 overflow-auto">{error}</pre>
+                <pre className="mt-3 overflow-auto leading-7 text-red-400">{error}</pre>
                 <hr className="my-5 border-neutral-800" />
                 <Link href="/auth/login">
                     <span className="link">Back to login page</span>

@@ -3,7 +3,7 @@ import Sidebar from '@/components/dashboard/applications/Sidebar';
 import MaintenanceScreen from '@/components/MaintenanceScreen';
 
 export default function Layout({ children }) {
-    if (process.env.NEXT_PUBLIC_SHOW_MAINTENANCE) return (
+    if (process.env.NEXT_PUBLIC_SHOW_MAINTENANCE === 'true') return (
         <MaintenanceScreen />
     );
 
