@@ -3,7 +3,7 @@
 export default async function getApplication(id) {
     const result = await fetch(`${process.env.API_HOST}/applications/${id}`, {
         method: 'GET',
-        next: { revalidate: 5 }
+        cache: 'no-cache'
     });
 
     if (result.status !== 200) {

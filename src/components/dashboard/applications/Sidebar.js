@@ -7,6 +7,7 @@ import ArrowLeftIcon from '@/assets/icons/arrow-left.svg';
 import GridIcon from '@/assets/icons/grid.svg';
 import KeyIcon from '@/assets/icons/key.svg';
 import TrashIcon from '@/assets/icons/trash.svg';
+import EditIcon from '@/assets/icons/edit.svg';
 import TrendingUpIcon from '@/assets/icons/trending-up.svg';
 import icon from '@/assets/img/icon.png';
 
@@ -18,7 +19,7 @@ export default function Sidebar() {
 
     return (
         <nav className="flex flex-col gap-5 min-w-[300px] w-[300px] max-w-[300px] h-full px-5 pb-5 pt-10 border-r border-r-neutral-800 bg-neutral-950">
-            <a href="https://mcstatus.io" className="flex items-center justify-center gap-3 text-2xl font-black hover:bg-neutral-800 rounded px-5 py-3 transition-colors">
+            <a href="https://mcstatus.io" className="flex items-center justify-center gap-3 px-5 py-3 text-2xl font-black transition-colors rounded hover:bg-neutral-800">
                 <Image src={icon} width="48" height="48" alt="Minecraft Server Status" priority />
                 <span>MCS</span>
             </a>
@@ -39,6 +40,14 @@ export default function Sidebar() {
                         <div className={`flex items-center gap-3 px-3 py-2 rounded ${path === `/applications/${id}` ? 'text-white bg-neutral-800' : 'text-neutral-400 hover:bg-neutral-800 hover:text-white'}`}>
                             <GridIcon width="16" height="16" />
                             <span>Overview</span>
+                        </div>
+                    </Link>
+                </li>
+                <li>
+                    <Link href={`/applications/${id}/edit`}>
+                        <div className={`flex items-center gap-3 px-3 py-2 rounded ${path === `/applications/${id}/edit` ? 'text-white bg-neutral-800' : 'text-neutral-400 hover:bg-neutral-800 hover:text-white'}`}>
+                            <EditIcon width="16" height="16" />
+                            <span>Edit Details</span>
                         </div>
                     </Link>
                 </li>

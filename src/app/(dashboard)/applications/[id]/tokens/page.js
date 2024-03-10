@@ -1,13 +1,16 @@
+import TokensList from '@/components/dashboard/applications/tokens/TokensList';
+
 export const metadata = {
     title: 'Tokens'
 };
 
-export default function Page() {
+export default function Page({ params: { id } }) {
     return (
         <div>
-            <h1 className="font-bold text-5xl">Tokens</h1>
-            <p className="text-xl text-neutral-400 mt-1">A list of API tokens generated for your application.</p>
+            <h1 className="text-5xl font-bold">Tokens</h1>
+            <p className="mt-1 text-xl text-neutral-400">A list of API tokens generated for your application.</p>
             <hr className="mt-5 mb-10 border-neutral-800" />
+            <TokensList applicationID={id} />
         </div>
     );
 }

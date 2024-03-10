@@ -8,15 +8,15 @@ export const metadata = {
 
 export default function Page() {
     return (
-        <div className="container mx-auto max-w-3xl">
+        <div>
             <Link href="/applications">
-                <span className="link flex items-center gap-2 text-lg">
+                <span className="flex items-center gap-2 text-lg link">
                     <ArrowLeftIcon width="20" height="20" />
-                    <span>Back to applications</span>
+                    <span>Back to Applications</span>
                 </span>
             </Link>
-            <h1 className="font-bold text-5xl mt-5">New Application</h1>
-            <p className="text-xl text-neutral-400 mt-1">Create a new application by filling out this form.</p>
+            <h1 className="mt-5 text-5xl font-bold">New Application</h1>
+            <p className="mt-1 text-xl text-neutral-400">Create a new application by filling out this form.</p>
             <hr className="mt-5 mb-10 border-neutral-800" />
             <NewApplicationForm />
         </div>
