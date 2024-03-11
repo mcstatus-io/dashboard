@@ -63,7 +63,8 @@ export default function TokensList({ applicationID, className = '' }) {
                                         { key: 'totalRequests', text: 'Total Requests' }
                                     ]}
                                     selected={sortingKey}
-                                    onChange={(key) => setSortingKey(key)} />
+                                    onChange={(key) => setSortingKey(key)}
+                                    disabled={isPending || error || data?.length < 2} />
                                 <DropdownSelect
                                     title="Sort Direction: "
                                     appendSelection
@@ -72,7 +73,8 @@ export default function TokensList({ applicationID, className = '' }) {
                                         { key: 'descending', text: 'Descending' }
                                     ]}
                                     selected={sortingDirection}
-                                    onChange={(direction) => setSortingDirection(direction)} />
+                                    onChange={(direction) => setSortingDirection(direction)}
+                                    disabled={isPending || error || data?.length < 2} />
                             </div>
                             {
                                 isPending
@@ -106,7 +108,7 @@ export default function TokensList({ applicationID, className = '' }) {
                                                 }
                                             </tbody>
                                         </table>
-                                        : <p className="mt-5 text-neutral-400">There does not seem to be any tokens here. Why not create one?</p>
+                                        : <p className="mt-2 text-neutral-400">There does not seem to be any tokens here. Why not create one?</p>
                             }
                         </div>
                     </>

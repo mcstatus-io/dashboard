@@ -6,11 +6,11 @@ export const metadata = {
 
 export default function Page() {
     return (
-        <div>
-            <h1 className="font-bold text-5xl">Applications</h1>
-            <p className="text-xl text-neutral-400 mt-1">A list of all your applications that interact with the API.</p>
+        <>
+            <h1 className="text-5xl font-bold">Applications</h1>
+            <p className="mt-1 text-xl text-neutral-400">A list of all your applications that interact with the API.</p>
             <hr className="mt-5 mb-10 border-neutral-800" />
             <ApplicationsList />
-        </div>
+        </>
     );
 }

@@ -2,7 +2,7 @@ import ChevronDownIcon from '@/assets/icons/chevron-down.svg';
 import CheckIcon from '@/assets/icons/check.svg';
 import { useEffect, useRef, useState } from 'react';
 
-export default function DropdownSelect({ title, options, selected, appendSelection = false, onChange }) {
+export default function DropdownSelect({ title, options, selected, appendSelection = false, disabled = false, onChange }) {
     const [showDropdown, setShowDropdown] = useState(false);
     const containerElem = useRef();
 
@@ -25,7 +25,7 @@ export default function DropdownSelect({ title, options, selected, appendSelecti
 
     return (
         <div className="relative" ref={containerElem}>
-            <button type="button" className="flex items-center gap-2 button" onClick={() => options.length > 0 && setShowDropdown(!showDropdown)}>
+            <button type="button" className="flex items-center gap-2 button" disabled={disabled} onClick={() => options.length > 0 && setShowDropdown(!showDropdown)}>
                 <span>{title}{appendSelection ? options.find((opt) => opt.key === selected)?.text ?? '' : ''}</span>
                 <ChevronDownIcon width="16" height="16" />
             </button>

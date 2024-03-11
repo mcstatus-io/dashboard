@@ -1,5 +1,5 @@
-import { Suspense } from 'react';
 import Sidebar from '@/components/dashboard/applications/Sidebar';
+import Header from '@/components/layout/Header';
 import MaintenanceScreen from '@/components/MaintenanceScreen';
 
 export default function Layout({ children }) {
@@ -10,10 +10,11 @@ export default function Layout({ children }) {
     return (
         <div className="flex w-full h-screen max-h-screen">
             <Sidebar />
-            <div className="container max-w-6xl px-24 mx-auto my-24 grow">
-                <Suspense fallback={null}>
+            <div className="grow">
+                <Header />
+                <div className="container max-w-6xl px-24 mx-auto my-24">
                     {children}
-                </Suspense>
+                </div>
             </div>
         </div>
     );

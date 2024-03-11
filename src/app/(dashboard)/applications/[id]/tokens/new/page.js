@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import ArrowLeftIcon from '@/assets/icons/arrow-left.svg';
+import CornerDownLeftIcon from '@/assets/icons/corner-down-left.svg';
 import NewTokenForm from '@/components/dashboard/applications/tokens/NewTokenForm';
 
 export const metadata = {
@@ -8,17 +8,15 @@ export const metadata = {
 
 export default function Page({ params: { id } }) {
     return (
-        <div>
-            <Link href={`/applications/${id}/tokens`}>
-                <span className="flex items-center gap-2 text-lg link">
-                    <ArrowLeftIcon width="20" height="20" />
-                    <span>Back to Tokens List</span>
-                </span>
-            </Link>
-            <h1 className="mt-5 text-5xl font-bold">New Token</h1>
+        <>
+            <h1 className="text-5xl font-bold">New API Token</h1>
             <p className="mt-1 text-xl text-neutral-400">Create a new API token by filling out this form.</p>
             <hr className="mt-5 mb-10 border-neutral-800" />
-            <NewTokenForm applicationID={id} />
-        </div>
+            <Link href={`/applications/${id}/tokens`} className="flex items-center gap-2 button w-fit">
+                <CornerDownLeftIcon width="16" height="16" />
+                <span>Back to Tokens List</span>
+            </Link>
+            <NewTokenForm applicationID={id} className="mt-3" />
+        </>
     );
 }

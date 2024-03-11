@@ -67,7 +67,7 @@ export default function Sidebar() {
                         </div>
                     </Link>
                 </li>
-                <li className="mt-auto">
+                <li className="mt-8">
                     <span className="text-sm text-neutral-300">Danger Zone</span>
                 </li>
                 <li className="mt-3">

@@ -19,59 +19,57 @@ export default function ApplicationsList({ className = '' }) {
     });
 
     return (
-        <div className={className}>
+        <div className={`box flex flex-col gap-3 ${className}`}>
+            <div className="flex items-center gap-3">
+                <Link href="/applications/new" className="flex items-center gap-2 button">
+                    <PlusIcon width="16" height="16" />
+                    <span>New Application</span>
+                </Link>
+                <DropdownSelect
+                    title="Sort By: "
+                    appendSelection
+                    options={[
+                        { key: 'name', text: 'Name' },
+                        { key: 'createdAt', text: 'Created At' }
+                    ]}
+                    selected={sortingKey}
+                    onChange={(key) => setSortingKey(key)}
+                    disabled={isPending || error || data?.length < 2} />
+                <DropdownSelect
+                    title="Sort Direction: "
+                    appendSelection
+                    options={[
+                        { key: 'ascending', text: 'Ascending' },
+                        { key: 'descending', text: 'Descending' }
+                    ]}
+                    selected={sortingDirection}
+                    onChange={(direction) => setSortingDirection(direction)}
+                    disabled={isPending || error || data?.length < 2} />
+            </div>
             {
-                error
-                    ? <div className="text-red-400 box">There was an error while fetching the list of applications. Please try again later.</div>
-                    : <div className="flex flex-col gap-3">
-                        <div className="flex items-center gap-3">
-                            <Link href="/applications/new" className="flex items-center gap-2 button">
-                                <PlusIcon width="16" height="16" />
-                                <span>New Application</span>
-                            </Link>
-                            <DropdownSelect
-                                title="Sort By: "
-                                appendSelection
-                                options={[
-                                    { key: 'name', text: 'Name' },
-                                    { key: 'createdAt', text: 'Created At' }
-                                ]}
-                                selected={sortingKey}
-                                onChange={(key) => setSortingKey(key)} />
-                            <DropdownSelect
-                                title="Sort Direction: "
-                                appendSelection
-                                options={[
-                                    { key: 'ascending', text: 'Ascending' },
-                                    { key: 'descending', text: 'Descending' }
-                                ]}
-                                selected={sortingDirection}
-                                onChange={(direction) => setSortingDirection(direction)} />
-                        </div>
-                        {
-                            isPending
-                                ? <div className="flex items-center justify-center py-24 box">
-                                    <LoadingIcon width="48" height="48" />
-                                </div>
-                                : data.length > 0
-                                    ? <ul className="flex flex-col gap-3">
-                                        {
-                                            data.map((application, index) => (
-                                                <li key={index}>
-                                                    <Link href={`/applications/${application.id}`}>
-                                                        <div className="box box-interactive">
-                                                            <p className="text-2xl font-bold">{application.name}</p>
-                                                            <p className="mt-1 text-neutral-300">{application.shortDescription}</p>
-                                                            <p className="mt-2 text-sm text-neutral-500">Created {humanizeDuration(Date.now() - new Date(application.createdAt).getTime(), { largest: 1, round: true })} ago</p>
-                                                        </div>
-                                                    </Link>
-                                                </li>
-                                            ))
-                                        }
-                                    </ul>
-                                    : <p className="mt-5 text-neutral-400">There does not seem to be any applications here. Why not create one?</p>
-                        }
+                isPending
+                    ? <div className="flex items-center justify-center py-24 box">
+                        <LoadingIcon width="48" height="48" />
                     </div>
+                    : error
+                        ? <div className="text-red-400">There was an error while fetching the list of applications. Please try again later.</div>
+                        : data.length > 0
+                            ? <ul className="flex flex-col gap-3">
+                                {
+                                    data.map((application, index) => (
+                                        <li key={index}>
+                                            <Link href={`/applications/${application.id}`}>
+                                                <div className="box box-interactive">
+                                                    <p className="text-2xl font-bold">{application.name}</p>
+                                                    <p className="mt-1 text-neutral-300">{application.shortDescription}</p>
+                                                    <p className="mt-2 text-sm text-neutral-500">Created {humanizeDuration(Date.now() - new Date(application.createdAt).getTime(), { largest: 1, round: true })} ago</p>
+                                                </div>
+                                            </Link>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                            : <p className="mt-2 text-neutral-400">There does not seem to be any applications here. Why not create one?</p>
             }
         </div>
     );

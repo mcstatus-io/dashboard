@@ -3,22 +3,17 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useContext } from 'react';
 import ArchiveIcon from '@/assets/icons/archive.svg';
 import CrosshairIcon from '@/assets/icons/crosshair.svg';
 import GitPullRequestIcon from '@/assets/icons/git-pull-request.svg';
 import GridIcon from '@/assets/icons/grid.svg';
 import KeyIcon from '@/assets/icons/key.svg';
-import LogOutIcon from '@/assets/icons/log-out.svg';
 import MonitorIcon from '@/assets/icons/monitor.svg';
 import ServerIcon from '@/assets/icons/server.svg';
-import SettingsIcon from '@/assets/icons/settings.svg';
 import icon from '@/assets/img/icon.png';
-import { UserProvider } from '@/components/auth/AuthHandler';
 
 export default function Sidebar() {
     const path = usePathname();
-    const user = useContext(UserProvider);
 
     return (
         <nav className="flex flex-col gap-5 min-w-[300px] w-[300px] max-w-[300px] h-full px-5 pb-5 pt-10 border-r border-r-neutral-800 bg-neutral-950">
@@ -40,7 +35,7 @@ export default function Sidebar() {
                 </li>
                 <li>
                     <Link href="/applications">
-                        <div className={`flex items-center gap-3 px-3 py-2 rounded ${path === '/applications' ? 'text-white bg-neutral-800' : 'text-neutral-400 hover:bg-neutral-800 hover:text-white'}`}>
+                        <div className={`flex items-center gap-3 px-3 py-2 rounded ${path.startsWith('/applications') ? 'text-white bg-neutral-800' : 'text-neutral-400 hover:bg-neutral-800 hover:text-white'}`}>
                             <GridIcon width="16" height="16" />
                             <span>Applications</span>
                         </div>
@@ -88,22 +83,6 @@ export default function Sidebar() {
                             <span>Routes</span>
                         </div>
                     </Link>
-                </li>
-                <li className="mt-auto">
-                    <div className="flex flex-col gap-1">
-                        <p className="text-sm text-neutral-400">Logged in as...</p>
-                        <p className="overflow-hidden overflow-ellipsis">{user.email}</p>
-                        <div className="flex items-center gap-3 mt-3">
-                            <Link href="/account" className="flex items-center justify-center gap-2 button grow">
-                                <SettingsIcon width="16" height="16" />
-                                <span>Settings</span>
-                            </Link>
-                            <Link href="/auth/logout" className="flex items-center justify-center gap-2 button button-danger grow">
-                                <LogOutIcon width="16" height="16" />
-                                <span>Log out</span>
-                            </Link>
-                        </div>
-                    </div>
                 </li>
             </ul>
         </nav>
