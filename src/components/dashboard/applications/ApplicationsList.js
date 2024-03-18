@@ -21,10 +21,17 @@ export default function ApplicationsList({ className = '' }) {
     return (
         <div className={`box flex flex-col gap-3 ${className}`}>
             <div className="flex items-center gap-3">
-                <Link href="/applications/new" className="flex items-center gap-2 button">
-                    <PlusIcon width="16" height="16" />
-                    <span>New Application</span>
-                </Link>
+                {
+                    data?.length >= 5
+                        ? <button type="button" className="flex items-center gap-2 button" disabled>
+                            <PlusIcon width="16" height="16" />
+                            <span>New Application</span>
+                        </button>
+                        : <Link href="/applications/new" className="flex items-center gap-2 button" disabled={!isPending && !error && data?.length >= 5}>
+                            <PlusIcon width="16" height="16" />
+                            <span>New Application</span>
+                        </Link>
+                }
                 <DropdownSelect
                     title="Sort By: "
                     appendSelection
@@ -34,7 +41,7 @@ export default function ApplicationsList({ className = '' }) {
                     ]}
                     selected={sortingKey}
                     onChange={(key) => setSortingKey(key)}
-                    disabled={isPending || error || data?.length < 2} />
+                    disabled={isPending || error || !data.success || data?.data?.length < 2} />
                 <DropdownSelect
                     title="Sort Direction: "
                     appendSelection
@@ -44,19 +51,24 @@ export default function ApplicationsList({ className = '' }) {
                     ]}
                     selected={sortingDirection}
                     onChange={(direction) => setSortingDirection(direction)}
-                    disabled={isPending || error || data?.length < 2} />
+                    disabled={isPending || error || !data.success || data?.data?.length < 2} />
             </div>
+            {
+                data?.data?.length >= 5
+                    ? <p className="text-orange-400">No more applications can be created as you have reached the limit.</p>
+                    : null
+            }
             {
                 isPending
                     ? <div className="flex items-center justify-center py-24 box">
                         <LoadingIcon width="48" height="48" />
                     </div>
-                    : error
+                    : error || !data.success
                         ? <div className="text-red-400">There was an error while fetching the list of applications. Please try again later.</div>
-                        : data.length > 0
+                        : data.data.length > 0
                             ? <ul className="flex flex-col gap-3">
                                 {
-                                    data.map((application, index) => (
+                                    data.data.map((application, index) => (
                                         <li key={index}>
                                             <Link href={`/applications/${application.id}`}>
                                                 <div className="box box-interactive">

@@ -19,9 +19,13 @@ export default function DiscordAuthHandler() {
                 try {
                     const result = await postDiscordCallback(searchParams.get('code'));
 
-                    window.localStorage.setItem('session', result.id);
+                    if (result.success) {
+                        window.localStorage.setItem('session', result.data.id);
 
-                    push('/');
+                        push('/');
+                    } else {
+                        setError(result.message);
+                    }
                 } catch (e) {
                     setError(e.message);
                 }

@@ -10,15 +10,14 @@ export const metadata = {
 };
 
 export default async function Page({ params: { id } }) {
-    const application = await getApplication(id);
-    if (!application) return notFound();
+    const result = await getApplication(id);
+    if (!result.success || !result.data) return notFound();
 
     return (
         <>
             <h1 className="text-5xl font-bold">Overview</h1>
             <p className="mt-1 text-xl text-neutral-400">A list of quick actions you can take on this application.</p>
-            <hr className="mt-5 mb-10 border-neutral-800" />
-            <div className="flex flex-col gap-3 list-none">
+            <div className="flex flex-col gap-3 mt-8 list-none">
                 <Link href={`/applications/${id}/edit`}>
                     <div className="flex items-center gap-5 box box-interactive">
                         <div className="p-3 text-white rounded-full bg-neutral-800">

@@ -5,13 +5,7 @@ export default async function postGitHubCallback(code) {
         method: 'POST'
     });
 
-    if (result.status !== 200) {
-        const body = await result.text();
-
-        throw new Error(body);
-    }
-
-    const body = await result.json();
-
-    return body;
+    return result.status === 200
+        ? { success: true, data: await result.json() }
+        : { success: false, message: await result.text() };
 }

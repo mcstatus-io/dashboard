@@ -24,7 +24,15 @@ export default function TokensList({ applicationID, className = '' }) {
         if (!confirm(`Are you sure that you want to delete the token '${token.name}'? This action cannot be undone!`)) return;
 
         try {
-            await deleteToken(applicationID, token.id, window.localStorage.getItem('session'));
+            const result = await deleteToken(applicationID, token.id, window.localStorage.getItem('session'));
+
+            if (!result.success) {
+                console.error(result.data);
+
+                alert('Failed to delete the specified token, please check the console for more information.');
+
+                throw new Error(result.data);
+            }
         } catch (e) {
             console.error(e);
 
@@ -44,7 +52,7 @@ export default function TokensList({ applicationID, className = '' }) {
     return (
         <div className={`box ${className}`}>
             {
-                error
+                error || !data.success
                     ? <p className="text-red-400">There was an error while fetching the list of tokens. Please try again later.</p>
                     : <>
                         <div className="flex flex-col gap-3">
@@ -64,7 +72,7 @@ export default function TokensList({ applicationID, className = '' }) {
                                     ]}
                                     selected={sortingKey}
                                     onChange={(key) => setSortingKey(key)}
-                                    disabled={isPending || error || data?.length < 2} />
+                                    disabled={isPending || error || !data.success || data?.data?.length < 2} />
                                 <DropdownSelect
                                     title="Sort Direction: "
                                     appendSelection
@@ -74,14 +82,14 @@ export default function TokensList({ applicationID, className = '' }) {
                                     ]}
                                     selected={sortingDirection}
                                     onChange={(direction) => setSortingDirection(direction)}
-                                    disabled={isPending || error || data?.length < 2} />
+                                    disabled={isPending || error || !data.success || data?.data?.length < 2} />
                             </div>
                             {
                                 isPending
                                     ? <div className="flex items-center justify-center py-24">
                                         <LoadingIcon width="48" height="48" />
                                     </div>
-                                    : data.length > 0
+                                    : data.data.length > 0
                                         ? <table className="table border-t table-auto border-x border-neutral-800">
                                             <thead>
                                                 <tr>
@@ -94,7 +102,7 @@ export default function TokensList({ applicationID, className = '' }) {
                                             </thead>
                                             <tbody>
                                                 {
-                                                    data.map((token, index) => (
+                                                    data.data.map((token, index) => (
                                                         <tr key={index}>
                                                             <th className="px-5 py-3 text-center border-b border-r border-neutral-800">{token.name}</th>
                                                             <td className="px-5 py-3 text-center border-b border-r border-neutral-800">{humanizeDuration(Date.now() - new Date(token.createdAt).getTime(), { largest: 1, round: true })} ago</td>

@@ -7,13 +7,7 @@ export default async function editApplication(id, values, sessionToken = null) {
         body: JSON.stringify(values)
     });
 
-    if (result.status !== 200) {
-        const body = await result.text();
-
-        throw new Error(body);
-    }
-
-    const body = await result.text();
-
-    return body;
+    return result.status === 200
+        ? { success: true, data: await result.json() }
+        : { success: false, message: await result.text() };
 }

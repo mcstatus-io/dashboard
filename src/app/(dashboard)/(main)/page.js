@@ -7,7 +7,6 @@ export default function Page() {
         <>
             <h1 className="text-5xl font-bold">Dashboard</h1>
             <p className="mt-1 text-xl text-neutral-400">Everything you need to see, all in one place.</p>
-            <hr className="mt-5 mb-10 border-neutral-800" />
         </>
     );
 }

@@ -6,15 +6,9 @@ export default async function getApplication(id) {
         cache: 'no-cache'
     });
 
-    if (result.status !== 200) {
-        if (result.status === 404) return null;
-
-        const body = await result.text();
-
-        throw new Error(body);
-    }
-
-    const body = await result.json();
-
-    return body;
+    return result.status === 200
+        ? { success: true, data: await result.json() }
+        : result.status === 404
+            ? { success: true, data: null }
+            : { success: false, message: await result.text() };
 }

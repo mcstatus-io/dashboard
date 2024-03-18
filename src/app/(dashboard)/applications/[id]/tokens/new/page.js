@@ -11,8 +11,7 @@ export default function Page({ params: { id } }) {
         <>
             <h1 className="text-5xl font-bold">New API Token</h1>
             <p className="mt-1 text-xl text-neutral-400">Create a new API token by filling out this form.</p>
-            <hr className="mt-5 mb-10 border-neutral-800" />
-            <Link href={`/applications/${id}/tokens`} className="flex items-center gap-2 button w-fit">
+            <Link href={`/applications/${id}/tokens`} className="flex items-center gap-2 mt-8 button w-fit">
                 <CornerDownLeftIcon width="16" height="16" />
                 <span>Back to Tokens List</span>
             </Link>

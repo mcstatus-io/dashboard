@@ -23,11 +23,15 @@ export default function DeleteApplicationForm({ application, className = '' }) {
             setSubmitting(true);
 
             try {
-                await deleteApplication(application.id, values, window.localStorage.getItem('session'));
+                const result = await deleteApplication(application.id, values, window.localStorage.getItem('session'));
 
-                queryClient.invalidateQueries({ queryKey: ['applications'] });
+                if (result.success) {
+                    queryClient.invalidateQueries({ queryKey: ['applications'] });
 
-                push('/applications');
+                    push('/applications');
+                } else {
+                    setStatus({ error: result.message });
+                }
             } catch (e) {
                 setStatus({ error: e.message });
             }

@@ -19,7 +19,7 @@ export default function Header() {
                     <SettingsIcon width="16" height="16" />
                     <span>Settings</span>
                 </Link>
-                <Link href="/account" className="flex items-center gap-2 button button-sm button-danger">
+                <Link href="/auth/logout" className="flex items-center gap-2 button button-sm button-danger">
                     <LogOutIcon width="16" height="16" />
                     <span>Log out</span>
                 </Link>

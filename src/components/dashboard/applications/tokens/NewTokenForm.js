@@ -26,13 +26,18 @@ export default function NewTokenForm({ applicationID, className }) {
             try {
                 const result = await createToken(applicationID, values, window.localStorage.getItem('session'));
 
-                queryClient.invalidateQueries({ queryKey: ['application', applicationID, 'tokens'] });
+                if (result.success) {
+                    queryClient.invalidateQueries({ queryKey: ['application', applicationID, 'tokens'] });
 
-                setStatus({ success: true, data: result });
+                    setStatus({ success: true, data: result.data });
+                } else {
+                    setStatus({ error: result.message });
+                }
             } catch (e) {
                 setStatus({ error: e.message });
-                setSubmitting(false);
             }
+
+            setSubmitting(false);
         }
     });
 

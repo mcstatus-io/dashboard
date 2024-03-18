@@ -28,13 +28,18 @@ export default function LoginForm({ className }) {
             try {
                 const result = await postLogin(values);
 
-                window.localStorage.setItem('session', result.id);
+                if (result.success) {
+                    window.localStorage.setItem('session', result.data.id);
 
-                push('/');
+                    push('/');
+                } else {
+                    setStatus({ error: result.message });
+                }
             } catch (e) {
                 setStatus({ error: e.message });
-                setSubmitting(false);
             }
+
+            setSubmitting(false);
         }
     });
 

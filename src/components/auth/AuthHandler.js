@@ -19,12 +19,18 @@ export default function AuthHandler({ children }) {
                 try {
                     const result = await getUser('@me', sessionToken);
 
-                    setUser(result);
+                    if (result.success) {
+                        setUser(result.data);
 
-                    if (result === null) {
+                        if (result.data === null) {
+                            push('/auth/login');
+                        } else if (!children) {
+                            push('/');
+                        }
+                    } else {
+                        setUser(null);
+
                         push('/auth/login');
-                    } else if (!children) {
-                        push('/');
                     }
                 } catch {
                     setUser(null);

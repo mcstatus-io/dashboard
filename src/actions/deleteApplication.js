@@ -6,13 +6,7 @@ export default async function deleteApplication(applicationID, sessionToken) {
         headers: { Authorization: sessionToken }
     });
 
-    if (result.status !== 200) {
-        const body = await result.text();
-
-        throw new Error(body);
-    }
-
-    const body = await result.text();
-
-    return body;
+    return result.status === 200
+        ? { success: true, data: await result.text() }
+        : { success: false, message: await result.text() };
 }

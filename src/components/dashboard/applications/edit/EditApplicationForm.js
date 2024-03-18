@@ -20,10 +20,14 @@ export default function EditApplicationForm({ application, className = '' }) {
             setSubmitting(true);
 
             try {
-                await editApplication(application.id, values, window.localStorage.getItem('session'));
+                const result = await editApplication(application.id, values, window.localStorage.getItem('session'));
 
-                resetForm({ values });
-                setStatus({ success: true });
+                if (result.success) {
+                    resetForm({ values });
+                    setStatus({ success: true });
+                } else {
+                    setStatus({ error: result.message });
+                }
             } catch (e) {
                 setStatus({ error: e.message });
             }

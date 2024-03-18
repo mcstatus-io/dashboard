@@ -27,13 +27,18 @@ export default function NewApplicationForm({ className = '' }) {
             try {
                 const result = await createApplication(values, window.localStorage.getItem('session'));
 
-                queryClient.invalidateQueries({ queryKey: ['applications'] });
+                if (result.success) {
+                    queryClient.invalidateQueries({ queryKey: ['applications'] });
 
-                push(`/applications/${result.id}`);
+                    push(`/applications/${result.data.id}`);
+                } else {
+                    setStatus({ error: result.message });
+                }
             } catch (e) {
                 setStatus({ error: e.message });
-                setSubmitting(false);
             }
+
+            setSubmitting(false);
         }
     });
 

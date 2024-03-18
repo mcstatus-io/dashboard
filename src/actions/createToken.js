@@ -7,13 +7,7 @@ export default async function createToken(applicationID, values, sessionToken = 
         body: JSON.stringify(values)
     });
 
-    if (result.status !== 201) {
-        const body = await result.text();
-
-        throw new Error(body);
-    }
-
-    const body = await result.json();
-
-    return body;
+    return result.status === 201
+        ? { success: true, data: await result.json() }
+        : { success: false, message: await result.text() };
 }
