@@ -12,6 +12,7 @@ export default function Page({ params: { id } }) {
             <h2 className="mt-8 text-2xl font-semibold">Total Requests</h2>
             <p className="text-neutral-400">Last 24 hours</p>
             <UsageChart applicationID={id} className="mt-3" />
+            <p className="text-sm text-neutral-600 py-12 text-center">More analytics to be added in the future.</p>
         </>
     );
 }
