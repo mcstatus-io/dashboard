@@ -1,11 +1,11 @@
 'use client';
 
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import LoadingIcon from '@/assets/icons/loading.svg';
-import CornerDownLeftIcon from '@/assets/icons/corner-down-left.svg';
-import createToken from '@/actions/createToken';
 import Link from 'next/link';
+import * as Yup from 'yup';
+import createToken from '@/actions/createToken';
+import CornerDownLeftIcon from '@/assets/icons/corner-down-left.svg';
+import LoadingIcon from '@/assets/icons/loading.svg';
 import CopyToClipboardButton from '@/components/CopyToClipboardButton';
 import { useQueryClient } from '@tanstack/react-query';
 
@@ -43,7 +43,7 @@ export default function NewTokenForm({ applicationID, className }) {
 
     return (
         form.status?.success
-            ? <div className="box">
+            ? <div className={`box ${className}`}>
                 <p>Your token was successfully generated for this application. You will use this code to make API requests, so please make sure that you store this code somewhere, or you will not be able to access it again without creating a new token.</p>
                 <pre className="flex items-center gap-3 mt-3 box">
                     <code>{form.status.data.token}</code>

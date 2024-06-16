@@ -104,7 +104,13 @@ export default function TokensList({ applicationID, className = '' }) {
                                                 <tr key={index}>
                                                     <th className="px-5 py-3 text-center border-b border-r border-neutral-800">{token.name}</th>
                                                     <td className="px-5 py-3 text-center border-b border-r border-neutral-800">{humanizeDuration(Date.now() - new Date(token.createdAt).getTime(), { largest: 1, round: true })} ago</td>
-                                                    <td className="px-5 py-3 text-center border-b border-r border-neutral-800">{humanizeDuration(Date.now() - new Date(token.lastUsedAt).getTime(), { largest: 1, round: true })} ago</td>
+                                                    <td className="px-5 py-3 text-center border-b border-r border-neutral-800">
+                                                        {
+                                                            token.lastUsedAt
+                                                                ? <span>{humanizeDuration(Date.now() - new Date(token.lastUsedAt).getTime(), { largest: 1, round: true })} ago</span>
+                                                                : <span>Never</span>
+                                                        }
+                                                    </td>
                                                     <td className="px-5 py-3 text-center border-b border-r border-neutral-800">{token.requestCount.toLocaleString()}</td>
                                                     <td className="px-5 py-3 text-center border-b border-b-neutral-800">
                                                         <button type="button" className="mx-auto button button-sm button-danger" onClick={() => mutation.mutate(token)}>Delete</button>
