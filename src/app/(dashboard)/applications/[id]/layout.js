@@ -12,8 +12,10 @@ export default function Layout({ children }) {
             <Sidebar />
             <div className="grow">
                 <Header />
-                <div className="container max-w-6xl px-24 mx-auto my-24">
-                    {children}
+                <div className="max-h-screen overflow-y-auto">
+                    <div className="container max-w-6xl px-24 mx-auto my-24">
+                        {children}
+                    </div>
                 </div>
             </div>
         </div>

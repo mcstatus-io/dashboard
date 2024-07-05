@@ -22,15 +22,15 @@ export default function ApplicationsList({ className = '' }) {
         <div className={`box flex flex-col gap-3 ${className}`}>
             <div className="flex items-center gap-3">
                 {
-                    data?.length >= 5
-                        ? <button type="button" className="flex items-center gap-2 button" disabled>
-                            <PlusIcon width="16" height="16" />
-                            <span>New Application</span>
-                        </button>
-                        : <Link href="/applications/new" className="flex items-center gap-2 button" disabled={!isPending && !error && data?.length >= 5}>
+                    data?.data?.length < 3
+                        ? <Link href="/applications/new" className="flex items-center gap-2 button">
                             <PlusIcon width="16" height="16" />
                             <span>New Application</span>
                         </Link>
+                        : <button type="button" className="flex items-center gap-2 button" disabled>
+                            <PlusIcon width="16" height="16" />
+                            <span>New Application</span>
+                        </button>
                 }
                 <DropdownSelect
                     title="Sort By: "
@@ -54,7 +54,7 @@ export default function ApplicationsList({ className = '' }) {
                     disabled={isPending || error || !data.success || data?.data?.length < 2} />
             </div>
             {
-                data?.data?.length >= 5
+                data?.data?.length >= 3
                     ? <p className="text-orange-400">No more applications can be created as you have reached the limit.</p>
                     : null
             }

@@ -53,10 +53,17 @@ export default function TokensList({ applicationID, className = '' }) {
         <div className={`box ${className}`}>
             <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-3">
-                    <Link href={`/applications/${applicationID}/tokens/new`} className="flex items-center gap-2 button">
-                        <PlusIcon width="16" height="16" />
-                        <span>New Token</span>
-                    </Link>
+                    {
+                        !isPending && !error && data.success && data.data.length < 1
+                            ? <Link href={`/applications/${applicationID}/tokens/new`} className="flex items-center gap-2 button">
+                                <PlusIcon width="16" height="16" />
+                                <span>New Token</span>
+                            </Link>
+                            : <button type="button" href={`/applications/${applicationID}/tokens/new`} className="flex items-center gap-2 button" disabled>
+                                <PlusIcon width="16" height="16" />
+                                <span>New Token</span>
+                            </button>
+                    }
                     <DropdownSelect
                         title="Sort By: "
                         appendSelection
@@ -80,6 +87,11 @@ export default function TokensList({ applicationID, className = '' }) {
                         onChange={(direction) => setSortingDirection(direction)}
                         disabled={isPending || error || !data.success || data?.data?.length < 2} />
                 </div>
+                {
+                    data?.data?.length >= 1
+                        ? <p className="text-orange-400">No more API tokens can be created as you have reached the limit.</p>
+                        : null
+                }
                 {
                     isPending
                         ? <div className="flex items-center justify-center py-24">

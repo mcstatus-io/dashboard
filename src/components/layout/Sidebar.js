@@ -16,7 +16,7 @@ export default function Sidebar() {
     const path = usePathname();
 
     return (
-        <nav className="flex flex-col gap-5 min-w-[300px] w-[300px] max-w-[300px] h-full px-5 pb-5 pt-10 border-r border-r-neutral-800 bg-neutral-950">
+        <nav className="flex flex-col gap-5 min-w-[300px] w-[300px] max-w-[300px] h-screen px-5 pb-5 pt-10 border-r border-r-neutral-800 bg-neutral-950">
             <a href="https://mcstatus.io" className="flex items-center justify-center gap-3 px-5 py-3 text-2xl font-black transition-colors rounded hover:bg-neutral-800">
                 <Image src={icon} width="48" height="48" alt="Minecraft Server Status" priority />
                 <span>MCS</span>
