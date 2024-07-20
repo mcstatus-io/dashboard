@@ -96,8 +96,6 @@ export default function Page() {
                         <li>An API token is required for all routes except icon</li>
                         <li>Shortened cache duration to 30 seconds</li>
                         <li>Added a batch status lookup route</li>
-                        <li>Added a route for sending Votifier votes</li>
-                        <li>Added the ability to scale images from the icon route (with authentication)</li>
                     </ul>
                 </section>
             </section>
