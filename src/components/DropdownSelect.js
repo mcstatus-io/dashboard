@@ -2,7 +2,9 @@ import ChevronDownIcon from '@/assets/icons/chevron-down.svg';
 import CheckIcon from '@/assets/icons/check.svg';
 import { useEffect, useRef, useState } from 'react';
 
-export default function DropdownSelect({ title, options, selected, appendSelection = false, disabled = false, onChange }) {
+// TODO make dropdown items selectable with keyboard using arrow keys/etc.
+
+export default function DropdownSelect({ title, options, selected, appendSelection = false, disabled = false, onChange, className = '' }) {
     const [showDropdown, setShowDropdown] = useState(false);
     const containerElem = useRef();
 
@@ -24,8 +26,8 @@ export default function DropdownSelect({ title, options, selected, appendSelecti
     }, [showDropdown, containerElem]);
 
     return (
-        <div className="relative" ref={containerElem}>
-            <button type="button" className="flex items-center gap-2 button" disabled={disabled} onClick={() => options.length > 0 && setShowDropdown(!showDropdown)}>
+        <div className={`relative ${className}`} ref={containerElem}>
+            <button type="button" className="flex items-center justify-between w-full gap-2 button" disabled={disabled} onClick={() => options.length > 0 && setShowDropdown(!showDropdown)}>
                 <span>{title}{appendSelection ? options.find((opt) => opt.key === selected)?.text ?? '' : ''}</span>
                 <ChevronDownIcon width="16" height="16" />
             </button>

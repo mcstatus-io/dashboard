@@ -5,10 +5,8 @@ import Link from 'next/link';
 import { useParams, usePathname } from 'next/navigation';
 import ArrowLeftIcon from '@/assets/icons/arrow-left.svg';
 import GridIcon from '@/assets/icons/grid.svg';
-import KeyIcon from '@/assets/icons/key.svg';
 import TrashIcon from '@/assets/icons/trash.svg';
 import EditIcon from '@/assets/icons/edit.svg';
-import TrendingUpIcon from '@/assets/icons/trending-up.svg';
 import icon from '@/assets/img/icon.png';
 
 export default function Sidebar() {
@@ -23,10 +21,10 @@ export default function Sidebar() {
             </a>
             <ul className="flex flex-col gap-1 grow">
                 <li className="mt-3">
-                    <Link href="/applications">
+                    <Link href="/servers">
                         <div className="flex items-center gap-3 px-3 py-2 rounded text-neutral-400 hover:bg-neutral-800 hover:text-white">
                             <ArrowLeftIcon width="16" height="16" />
-                            <span>Back to Applications</span>
+                            <span>Back to Servers</span>
                         </div>
                     </Link>
                 </li>
@@ -34,34 +32,18 @@ export default function Sidebar() {
                     <span className="text-sm text-neutral-300">General</span>
                 </li>
                 <li className="mt-3">
-                    <Link href={`/applications/${id}`}>
-                        <div className={`flex items-center gap-3 px-3 py-2 rounded ${path === `/applications/${id}` ? 'text-white bg-neutral-800' : 'text-neutral-400 hover:bg-neutral-800 hover:text-white'}`}>
+                    <Link href={`/servers/${id}`}>
+                        <div className={`flex items-center gap-3 px-3 py-2 rounded ${path === `/servers/${id}` ? 'text-white bg-neutral-800' : 'text-neutral-400 hover:bg-neutral-800 hover:text-white'}`}>
                             <GridIcon width="16" height="16" />
                             <span>Overview</span>
                         </div>
                     </Link>
                 </li>
                 <li>
-                    <Link href={`/applications/${id}/edit`}>
-                        <div className={`flex items-center gap-3 px-3 py-2 rounded ${path === `/applications/${id}/edit` ? 'text-white bg-neutral-800' : 'text-neutral-400 hover:bg-neutral-800 hover:text-white'}`}>
+                    <Link href={`/servers/${id}/edit`}>
+                        <div className={`flex items-center gap-3 px-3 py-2 rounded ${path === `/servers/${id}/edit` ? 'text-white bg-neutral-800' : 'text-neutral-400 hover:bg-neutral-800 hover:text-white'}`}>
                             <EditIcon width="16" height="16" />
                             <span>Edit Details</span>
-                        </div>
-                    </Link>
-                </li>
-                <li>
-                    <Link href={`/applications/${id}/usage`}>
-                        <div className={`flex items-center gap-3 px-3 py-2 rounded ${path === `/applications/${id}/usage` ? 'text-white bg-neutral-800' : 'text-neutral-400 hover:bg-neutral-800 hover:text-white'}`}>
-                            <TrendingUpIcon width="16" height="16" />
-                            <span>Usage</span>
-                        </div>
-                    </Link>
-                </li>
-                <li>
-                    <Link href={`/applications/${id}/tokens`}>
-                        <div className={`flex items-center gap-3 px-3 py-2 rounded ${path.startsWith(`/applications/${id}/tokens`) ? 'text-white bg-neutral-800' : 'text-neutral-400 hover:bg-neutral-800 hover:text-white'}`}>
-                            <KeyIcon width="16" height="16" />
-                            <span>API Tokens</span>
                         </div>
                     </Link>
                 </li>
@@ -69,8 +51,8 @@ export default function Sidebar() {
                     <span className="text-sm text-neutral-300">Danger Zone</span>
                 </li>
                 <li className="mt-3">
-                    <Link href={`/applications/${id}/delete`}>
-                        <div className={`flex items-center gap-3 px-3 py-2 rounded ${path === `/applications/${id}/delete` ? 'text-white bg-red-500' : 'text-red-500 hover:bg-neutral-800 hover:text-red-400'}`}>
+                    <Link href={`/servers/${id}/delete`}>
+                        <div className={`flex items-center gap-3 px-3 py-2 rounded ${path === `/servers/${id}/delete` ? 'text-white bg-red-500' : 'text-red-500 hover:bg-neutral-800 hover:text-red-400'}`}>
                             <TrashIcon width="16" height="16" />
                             <span>Delete</span>
                         </div>
