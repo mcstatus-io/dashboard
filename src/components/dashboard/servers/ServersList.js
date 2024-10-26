@@ -18,6 +18,8 @@ export default function ServersList({ className = '' }) {
         queryFn: () => getUserServers('@me', sortingKey, sortingDirection, window.localStorage.getItem('session'))
     });
 
+    console.log(data);
+
     return (
         <div className={`box flex flex-col gap-3 ${className}`}>
             <div className="flex items-center gap-3">
@@ -72,8 +74,24 @@ export default function ServersList({ className = '' }) {
                                         <li key={index}>
                                             <Link href={`/servers/${server.id}`}>
                                                 <div className="box box-interactive">
-                                                    <p className="text-2xl font-bold">{server.name}</p>
-                                                    <p className="mt-1 text-neutral-300">{server.shortDescription}</p>
+                                                    <div className="flex items-center gap-3">
+                                                        {
+                                                            server.server.status === 'unknown'
+                                                                ? <div className="block w-2 h-2 rounded-full bg-neutral-500" title="Server status unknown" />
+                                                                : server.server.status === 'online'
+                                                                    ? <div className="block w-2 h-2 bg-green-400 rounded-full" title="Server online" />
+                                                                    : <div className="block w-2 h-2 bg-red-400 rounded-full" title="Server offline" />
+                                                        }
+                                                        <p className="text-2xl font-bold">{server.name}</p>
+                                                    </div>
+                                                    <p className="mt-1 font-mono text-neutral-500">
+                                                        <span>{server.server.hostname}</span>
+                                                        {
+                                                            (server.server.type === 'java' && server.server.port !== 25565) || (server.server.type === 'bedrock' && server.server.port !== 19132)
+                                                                ? <span>:{server.server.port}</span>
+                                                                : null
+                                                        }
+                                                    </p>
                                                     <p className="mt-2 text-sm text-neutral-500">Created {humanizeDuration(Date.now() - new Date(server.createdAt).getTime(), { largest: 1, round: true })} ago</p>
                                                 </div>
                                             </Link>
