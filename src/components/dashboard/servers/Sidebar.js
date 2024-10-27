@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useParams, usePathname } from 'next/navigation';
 import ArrowLeftIcon from '@/assets/icons/arrow-left.svg';
 import GridIcon from '@/assets/icons/grid.svg';
+import TrendingUpIcon from '@/assets/icons/trending-up.svg';
 import TrashIcon from '@/assets/icons/trash.svg';
 import EditIcon from '@/assets/icons/edit.svg';
 import icon from '@/assets/img/icon.png';
@@ -36,6 +37,14 @@ export default function Sidebar() {
                         <div className={`flex items-center gap-3 px-3 py-2 rounded ${path === `/servers/${id}` ? 'text-white bg-neutral-800' : 'text-neutral-400 hover:bg-neutral-800 hover:text-white'}`}>
                             <GridIcon width="16" height="16" />
                             <span>Overview</span>
+                        </div>
+                    </Link>
+                </li>
+                <li>
+                    <Link href={`/servers/${id}/statistics`}>
+                        <div className={`flex items-center gap-3 px-3 py-2 rounded ${path === `/servers/${id}/statistics` ? 'text-white bg-neutral-800' : 'text-neutral-400 hover:bg-neutral-800 hover:text-white'}`}>
+                            <TrendingUpIcon width="16" height="16" />
+                            <span>Statistics</span>
                         </div>
                     </Link>
                 </li>

@@ -84,14 +84,18 @@ export default function ServersList({ className = '' }) {
                                                         }
                                                         <p className="text-2xl font-bold">{server.name}</p>
                                                     </div>
-                                                    <p className="mt-1 font-mono text-neutral-500">
-                                                        <span>{server.server.hostname}</span>
-                                                        {
-                                                            (server.server.type === 'java' && server.server.port !== 25565) || (server.server.type === 'bedrock' && server.server.port !== 19132)
-                                                                ? <span>:{server.server.port}</span>
-                                                                : null
-                                                        }
-                                                    </p>
+                                                    <div className="flex items-center gap-3 mt-1 text-neutral-500">
+                                                        <p className="font-mono">
+                                                            <span>{server.server.hostname}</span>
+                                                            {
+                                                                (server.server.type === 'java' && server.server.port !== 25565) || (server.server.type === 'bedrock' && server.server.port !== 19132)
+                                                                    ? <span>:{server.server.port}</span>
+                                                                    : null
+                                                            }
+                                                        </p>
+                                                        <div className="block w-1 h-1 rounded-full bg-neutral-700" />
+                                                        <p>{((server.server.onlineCount * 100) / Math.max(server.server.totalCount, 1)).toFixed(1)}% uptime</p>
+                                                    </div>
                                                     <p className="mt-2 text-sm text-neutral-500">Created {humanizeDuration(Date.now() - new Date(server.createdAt).getTime(), { largest: 1, round: true })} ago</p>
                                                 </div>
                                             </Link>
