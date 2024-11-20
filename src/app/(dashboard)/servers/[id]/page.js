@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import EditIcon from '@/assets/icons/edit.svg';
 import KeyIcon from '@/assets/icons/key.svg';
+import TrendingUpIcon from '@/assets/icons/trending-up.svg';
+import ListIcon from '@/assets/icons/list.svg';
 import getServer from '@/actions/getServer';
 
 export const metadata = {
@@ -25,6 +27,28 @@ export default async function Page({ params: { id } }) {
                         <div>
                             <p className="text-lg font-bold text-white">Edit Details</p>
                             <p>Change the details of your server.</p>
+                        </div>
+                    </div>
+                </Link>
+                <Link href={`/servers/${id}/statistics`}>
+                    <div className="flex items-center gap-5 box box-interactive">
+                        <div className="p-3 text-white rounded-full bg-neutral-800">
+                            <TrendingUpIcon width="20" height="20" />
+                        </div>
+                        <div>
+                            <p className="text-lg font-bold text-white">Statistics</p>
+                            <p>An overview the server statistics and uptime.</p>
+                        </div>
+                    </div>
+                </Link>
+                <Link href={`/servers/${id}/logs`}>
+                    <div className="flex items-center gap-5 box box-interactive">
+                        <div className="p-3 text-white rounded-full bg-neutral-800">
+                            <ListIcon width="20" height="20" />
+                        </div>
+                        <div>
+                            <p className="text-lg font-bold text-white">Status Logs</p>
+                            <p>A list of recent status changes of the server.</p>
                         </div>
                     </div>
                 </Link>

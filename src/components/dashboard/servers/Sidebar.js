@@ -8,6 +8,8 @@ import GridIcon from '@/assets/icons/grid.svg';
 import TrendingUpIcon from '@/assets/icons/trending-up.svg';
 import TrashIcon from '@/assets/icons/trash.svg';
 import EditIcon from '@/assets/icons/edit.svg';
+import ListIcon from '@/assets/icons/list.svg';
+import LayoutIcon from '@/assets/icons/layout.svg';
 import icon from '@/assets/img/icon.png';
 
 export default function Sidebar() {
@@ -49,6 +51,25 @@ export default function Sidebar() {
                     </Link>
                 </li>
                 <li>
+                    <Link href={`/servers/${id}/logs`}>
+                        <div className={`flex items-center gap-3 px-3 py-2 rounded ${path === `/servers/${id}/logs` ? 'text-white bg-neutral-800' : 'text-neutral-400 hover:bg-neutral-800 hover:text-white'}`}>
+                            <ListIcon width="16" height="16" />
+                            <span>Status Logs</span>
+                        </div>
+                    </Link>
+                </li>
+                <li>
+                    <Link href={`/servers/${id}/page`}>
+                        <div className={`flex items-center gap-3 px-3 py-2 rounded ${path === `/servers/${id}/page` ? 'text-white bg-neutral-800' : 'text-neutral-400 hover:bg-neutral-800 hover:text-white'}`}>
+                            <LayoutIcon width="16" height="16" />
+                            <span>Status Page</span>
+                        </div>
+                    </Link>
+                </li>
+                <li className="mt-8">
+                    <span className="text-sm text-neutral-300">Manage</span>
+                </li>
+                <li className="mt-3">
                     <Link href={`/servers/${id}/edit`}>
                         <div className={`flex items-center gap-3 px-3 py-2 rounded ${path === `/servers/${id}/edit` ? 'text-white bg-neutral-800' : 'text-neutral-400 hover:bg-neutral-800 hover:text-white'}`}>
                             <EditIcon width="16" height="16" />
@@ -56,10 +77,7 @@ export default function Sidebar() {
                         </div>
                     </Link>
                 </li>
-                <li className="mt-8">
-                    <span className="text-sm text-neutral-300">Danger Zone</span>
-                </li>
-                <li className="mt-3">
+                <li>
                     <Link href={`/servers/${id}/delete`}>
                         <div className={`flex items-center gap-3 px-3 py-2 rounded ${path === `/servers/${id}/delete` ? 'text-white bg-red-500' : 'text-red-500 hover:bg-neutral-800 hover:text-red-400'}`}>
                             <TrashIcon width="16" height="16" />
